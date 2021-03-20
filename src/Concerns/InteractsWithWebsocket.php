@@ -98,6 +98,7 @@ trait InteractsWithWebsocket
             // trigger 'connect' websocket event
             if ($websocket->eventExists('connect')) {
                 // set sandbox container to websocket pipeline
+                $illuminateRequest->fd = $swooleRequest->fd;
                 $websocket->setContainer($sandbox->getApplication());
                 $websocket->call('connect', $illuminateRequest);
             }
